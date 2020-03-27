@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fred.mall.option.dao.OptionDAO">
+    <resultMap type="com.fred.mall.option.model.entity.Option" id="OptionMap">
+        <id property="id" column="id" jdbcType="BIGINT" />
+        <result property="categoryId" column="category_id" jdbcType="VARCHAR" />
+        <result property="name" column="name" jdbcType="VARCHAR" />
+        <result property="createdBy" column="createdBy" jdbcType="BIGINT" />
+        <result property="createdDate" column="createdDate" jdbcType="BIGINT" />
+        <result property="modifiedBy" column="modifiedBy" jdbcType="BIGINT" />
+        <result property="modifiedDate" column="modifiedDate" jdbcType="BIGINT" />
+        <result property="status" column="status" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      `id`,
+            `category_id`,
+            `name`,
+            `createdBy`,
+            `createdDate`,
+            `modifiedBy`,
+            `modifiedDate`,
+            `status`
+    </sql>
+
+    <insert id="insert" parameterType="com.fred.mall.option.model.entity.Option">
+        INSERT INTO t_option (
+            <include refid="Base_Column_List" />
+        )VALUES(
+            #{id},
+            #{categoryId},
+            #{name},
+            #{createdBy},
+            #{createdDate},
+            #{modifiedBy},
+            #{modifiedDate},
+            <choose>
+                <when test="status != null">#{status}</when>
+                <otherwise>1</otherwise>
+            </choose>
+        )
+    </insert>
+
+    <insert id="insertList" parameterType="List">
+        INSERT INTO t_option (
+            <include refid="Base_Column_List" />
+        )VALUES
+        <foreach collection="list" item="data" separator=",">
+        (
+            #{data.id},
+            #{data.categoryId},
+            #{data.name},
+            #{data.createdBy},
+            #{data.createdDate},
+            #{data.modifiedBy},
+            #{data.modifiedDate},
+            <choose>
+                <when test="data.status != null">#{data.status}</when>
+                <otherwise>1</otherwise>
+            </choose>
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.fred.mall.option.model.entity.Option">
+        <![CDATA[
+            UPDATE t_option SET
+                `category_id`=#{categoryId}, 
+                `name`=#{name}, 
+                `createdBy`=#{createdBy}, 
+                `createdDate`=#{createdDate}, 
+                `modifiedBy`=#{modifiedBy}, 
+                `modifiedDate`=#{modifiedDate}, 
+                `modified_by`=#{modifiedBy},
+                `modified_date`=#{modifiedDate}
+        ]]>
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="status != null ">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+        </trim>
+    </update>
+
+    <update id="updatex" parameterType="Map">
+        <![CDATA[
+            UPDATE t_option SET
+        ]]>
+        <foreach collection="datas.keys" item="key" separator=","
+            open=" " close=" ">
+            <if test="key != null">
+                `${key}`= #{datas[${key}]}
+            </if>
+        </foreach>
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="status !=null ">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <foreach collection="conditions.keys" item="key" separator=" AND "
+                open="AND">
+                <if test="key != null">
+                    `${key}`=#{conditions[${key}]}
+                </if>
+            </foreach>
+        </trim>
+    </update>
+
+    <update id="delete" parameterType="Map">
+        <![CDATA[
+            UPDATE t_option SET
+                `status`=0,
+                `modified_by`=#{modifiedBy},
+                `modified_date`=#{modifiedDate}
+        ]]>
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="status !=null ">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="categoryId != null">
+                AND `category_id` = #{categoryId}
+            </if>
+            <if test="name != null">
+                AND `name` = #{name}
+            </if>
+            <if test="createdBy != null">
+                AND `createdBy` = #{createdBy}
+            </if>
+            <if test="createdDate != null">
+                AND `createdDate` = #{createdDate}
+            </if>
+            <if test="modifiedBy != null">
+                AND `modifiedBy` = #{modifiedBy}
+            </if>
+            <if test="modifiedDate != null">
+                AND `modifiedDate` = #{modifiedDate}
+            </if>
+            <if test="start != null  and  end != null">
+                AND `created_date` BETWEEN  #{start} AND #{end}
+            </if>
+            <if test="date != null">
+                AND `created_date` LIKE CONCAT(#{date},'%')
+            </if>
+        </trim>
+    </update>
+
+    <delete id="pdelete" parameterType="Map">
+        <![CDATA[
+            DELETE FROM t_option
+        ]]>
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="status !=null ">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="categoryId != null">
+                AND `category_id` = #{categoryId}
+            </if>
+            <if test="name != null">
+                AND `name` = #{name}
+            </if>
+            <if test="createdBy != null">
+                AND `createdBy` = #{createdBy}
+            </if>
+            <if test="createdDate != null">
+                AND `createdDate` = #{createdDate}
+            </if>
+            <if test="modifiedBy != null">
+                AND `modifiedBy` = #{modifiedBy}
+            </if>
+            <if test="modifiedDate != null">
+                AND `modifiedDate` = #{modifiedDate}
+            </if>
+            <if test="start != null  and  end != null">
+                AND `created_date` BETWEEN  #{start} AND #{end}
+            </if>
+            <if test="date != null">
+                AND `created_date` LIKE CONCAT(#{date},'%')
+            </if>
+        </trim>
+    </delete>
+
+    <select id="count" parameterType="Map" resultType="Integer">
+        <![CDATA[
+            SELECT COUNT(*) FROM t_option
+        ]]>
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="status !=null">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="categoryId != null">
+                AND `category_id` = #{categoryId}
+            </if>
+            <if test="name != null">
+                AND `name` = #{name}
+            </if>
+            <if test="createdBy != null">
+                AND `createdBy` = #{createdBy}
+            </if>
+            <if test="createdDate != null">
+                AND `createdDate` = #{createdDate}
+            </if>
+            <if test="modifiedBy != null">
+                AND `modifiedBy` = #{modifiedBy}
+            </if>
+            <if test="modifiedDate != null">
+                AND `modifiedDate` = #{modifiedDate}
+            </if>
+            <if test="start != null  and  end != null">
+                AND `created_date` BETWEEN  #{start} AND #{end}
+            </if>
+            <if test="date != null">
+                AND `created_date` LIKE CONCAT(#{date},'%')
+            </if>
+        </trim>
+    </select>
+
+    <select id="selectOne" parameterType="Map" resultMap="OptionMap">
+        SELECT <include refid="Base_Column_List" /> FROM t_option
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="status !=null ">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="categoryId != null">
+                AND `category_id` = #{categoryId}
+            </if>
+            <if test="name != null">
+                AND `name` = #{name}
+            </if>
+            <if test="createdBy != null">
+                AND `createdBy` = #{createdBy}
+            </if>
+            <if test="createdDate != null">
+                AND `createdDate` = #{createdDate}
+            </if>
+            <if test="modifiedBy != null">
+                AND `modifiedBy` = #{modifiedBy}
+            </if>
+            <if test="modifiedDate != null">
+                AND `modifiedDate` = #{modifiedDate}
+            </if>
+            <if test="start != null  and  end != null">
+                AND `created_date` BETWEEN  #{start} AND #{end}
+            </if>
+            <if test="date != null">
+                AND `created_date` LIKE CONCAT(#{date},'%')
+            </if>
+        </trim>
+        LIMIT 0,1
+    </select>
+
+    <select id="select" parameterType="Map" resultMap="OptionMap">
+        SELECT <include refid="Base_Column_List" /> FROM t_option
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="status !=null">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="categoryId != null">
+                AND `category_id` = #{categoryId}
+            </if>
+            <if test="name != null">
+                AND `name` = #{name}
+            </if>
+            <if test="createdBy != null">
+                AND `createdBy` = #{createdBy}
+            </if>
+            <if test="createdDate != null">
+                AND `createdDate` = #{createdDate}
+            </if>
+            <if test="modifiedBy != null">
+                AND `modifiedBy` = #{modifiedBy}
+            </if>
+            <if test="modifiedDate != null">
+                AND `modifiedDate` = #{modifiedDate}
+            </if>
+            <if test="start != null  and  end != null">
+                AND `created_date` BETWEEN  #{start} AND #{end}
+            </if>
+            <if test="date != null">
+                AND `created_date` LIKE CONCAT(#{date},'%')
+            </if>
+        </trim>
+        <if test="scs != null and scs.size() > 0">
+            ORDER BY
+            <foreach collection="scs" item="sc" separator=",">
+                <![CDATA[
+                    ${sc.field} ${sc.order}
+                ]]>
+            </foreach>
+        </if>
+        <if test="pc != null">
+            LIMIT ${pc.startIndex},${pc.pageSize}
+        </if>
+    </select>
+    
+    <select id="selectMap" parameterType="Map" resultType="Map">
+        SELECT
+        <foreach collection="columns" item="cname" separator=","  open="`" close="`">
+            <![CDATA[
+                ${cname}
+            ]]>
+        </foreach>
+         FROM t_option
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="status !=null ">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="categoryId != null">
+                AND `category_id` = #{categoryId}
+            </if>
+            <if test="name != null">
+                AND `name` = #{name}
+            </if>
+            <if test="createdBy != null">
+                AND `createdBy` = #{createdBy}
+            </if>
+            <if test="createdDate != null">
+                AND `createdDate` = #{createdDate}
+            </if>
+            <if test="modifiedBy != null">
+                AND `modifiedBy` = #{modifiedBy}
+            </if>
+            <if test="modifiedDate != null">
+                AND `modifiedDate` = #{modifiedDate}
+            </if>
+            <if test="start != null  and  end != null">
+                AND `created_date` BETWEEN  #{start} AND #{end}
+            </if>
+            <if test="date != null">
+                AND `created_date` LIKE CONCAT(#{date},'%')
+            </if>
+        </trim>
+        <if test="scs != null and scs.size() > 0">
+            ORDER BY
+            <foreach collection="scs" item="sc" separator=",">
+                <![CDATA[
+                    ${sc.field} ${sc.order}
+                ]]>
+            </foreach>
+        </if>
+        <if test="pc != null">
+            LIMIT ${pc.startIndex},${pc.pageSize}
+        </if>
+    </select>
+
+    <!--统计相关查询-->
+    <select id="groupCount" parameterType="Map" resultType="Map">
+        <![CDATA[
+            SELECT ${group} AS `group`, COUNT(DISTINCT id) AS `count` FROM  t_option 
+        ]]>
+        <trim prefix="WHERE" prefixOverrides="AND |OR">
+            <choose>
+                <when test="status !=null ">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="categoryId != null">
+                AND `category_id` = #{categoryId}
+            </if>
+            <if test="name != null">
+                AND `name` = #{name}
+            </if>
+            <if test="createdBy != null">
+                AND `createdBy` = #{createdBy}
+            </if>
+            <if test="createdDate != null">
+                AND `createdDate` = #{createdDate}
+            </if>
+            <if test="modifiedBy != null">
+                AND `modifiedBy` = #{modifiedBy}
+            </if>
+            <if test="modifiedDate != null">
+                AND `modifiedDate` = #{modifiedDate}
+            </if>
+            <if test="start != null  and  end != null">
+                AND `created_date` BETWEEN  #{start} AND #{end}
+            </if>
+            <if test="date != null">
+                AND `created_date` LIKE CONCAT(#{date},'%')
+            </if>
+        </trim>
+        GROUP BY `group` 
+        ORDER BY `group` ASC
+    </select>
+    
+    <select id="sum" parameterType="Map" resultType="Double">
+        <![CDATA[
+            SELECT IFNULL(SUM(${sumfield}),0) AS `sum` FROM  t_option  
+        ]]>
+        <trim prefix="WHERE" prefixOverrides="AND |OR">
+            <choose>
+                <when test="status !=null ">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="categoryId != null">
+                AND `category_id` = #{categoryId}
+            </if>
+            <if test="name != null">
+                AND `name` = #{name}
+            </if>
+            <if test="createdBy != null">
+                AND `createdBy` = #{createdBy}
+            </if>
+            <if test="createdDate != null">
+                AND `createdDate` = #{createdDate}
+            </if>
+            <if test="modifiedBy != null">
+                AND `modifiedBy` = #{modifiedBy}
+            </if>
+            <if test="modifiedDate != null">
+                AND `modifiedDate` = #{modifiedDate}
+            </if>
+            <if test="start != null  and  end != null">
+                AND `created_date` BETWEEN  #{start} AND #{end}
+            </if>
+            <if test="date != null">
+                AND `created_date` LIKE CONCAT(#{date},'%')
+            </if>
+        </trim>
+    </select>
+    
+    <select id="groupSum" parameterType="Map" resultType="Map">
+        <![CDATA[
+            SELECT ${group} AS `group`, IFNULL(SUM(${sumfield}),0) AS `sum`  FROM  t_option  
+        ]]>
+        <trim prefix="WHERE" prefixOverrides="AND |OR">
+            <choose>
+                <when test="status !=null ">status = #{status}</when>
+                <otherwise><![CDATA[status > 0]]></otherwise>
+            </choose>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="categoryId != null">
+                AND `category_id` = #{categoryId}
+            </if>
+            <if test="name != null">
+                AND `name` = #{name}
+            </if>
+            <if test="createdBy != null">
+                AND `createdBy` = #{createdBy}
+            </if>
+            <if test="createdDate != null">
+                AND `createdDate` = #{createdDate}
+            </if>
+            <if test="modifiedBy != null">
+                AND `modifiedBy` = #{modifiedBy}
+            </if>
+            <if test="modifiedDate != null">
+                AND `modifiedDate` = #{modifiedDate}
+            </if>
+            <if test="start != null  and  end != null">
+                AND `created_date` BETWEEN  #{start} AND #{end}
+            </if>
+            <if test="date != null">
+                AND `created_date` LIKE CONCAT(#{date},'%')
+            </if>
+        </trim>
+        GROUP BY `group` 
+        ORDER BY `group` ASC
+    </select>
+</mapper>
