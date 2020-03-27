@@ -1,0 +1,4 @@
+INSERT INTO zmall.t_category (id, parent_id, name, level, priority, detail, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043448256798916609, 0, '蔬菜', 1, 999, '绿叶蔬菜', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_category (id, parent_id, name, level, priority, detail, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043448256798916610, 0, '水果', 1, 998, '新鲜水果', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_category (id, parent_id, name, level, priority, detail, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043448256798916611, 0, '饮料', 1, 1000, '各式饮料', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_category (id, parent_id, name, level, priority, detail, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043448256798916612, 0, '酒水', 1, 1001, '各种酒水', 0, 0, 0, 0, 1);

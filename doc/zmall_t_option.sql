@@ -1,0 +1,2 @@
+INSERT INTO zmall.t_option (id, category_id, name, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043455639285661696, '1043448256798916611', '口味', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_option (id, category_id, name, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043455639289856000, '1043448256798916611', '容量', 0, 0, 0, 0, 1);

@@ -1,0 +1,6 @@
+INSERT INTO zmall.t_goods (id, product_id, name, code, price, stock, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043458572068847616, 1043450703827173379, '大瓶草莓味酸奶', 'SKU0001', 1.00, '100', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_goods (id, product_id, name, code, price, stock, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043458572073041920, 1043450703827173379, '大瓶蓝莓味酸奶', 'SKU0002', 2.00, '200', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_goods (id, product_id, name, code, price, stock, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043458572073041921, 1043450703827173379, '大瓶木瓜味酸奶', 'SKU0003', 3.00, '300', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_goods (id, product_id, name, code, price, stock, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043458572073041922, 1043450703827173379, '小瓶草莓味酸奶', 'SKU0004', 4.00, '400', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_goods (id, product_id, name, code, price, stock, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043458572073041923, 1043450703827173379, '小瓶蓝莓味酸奶', 'SKU0005', 5.00, '500', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_goods (id, product_id, name, code, price, stock, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043458572073041924, 1043450703827173379, '小瓶木瓜味酸奶', 'SKU0006', 6.00, '600', 0, 0, 0, 0, 1);

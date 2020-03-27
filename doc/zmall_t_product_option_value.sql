@@ -1,0 +1,5 @@
+INSERT INTO zmall.t_product_option_value (id, product_id, option_id, value, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043457840439623680, 1043450703827173379, 1043455639285661696, '草莓', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_product_option_value (id, product_id, option_id, value, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043457840439623681, 1043450703827173379, 1043455639285661696, '蓝莓', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_product_option_value (id, product_id, option_id, value, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043457840439623682, 1043450703827173379, 1043455639285661696, '木瓜', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_product_option_value (id, product_id, option_id, value, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043457840439623683, 1043450703827173379, 1043455639289856000, '500ml', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_product_option_value (id, product_id, option_id, value, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043457840439623684, 1043450703827173379, 1043455639289856000, '700ml', 0, 0, 0, 0, 1);

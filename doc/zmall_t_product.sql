@@ -1,0 +1,5 @@
+INSERT INTO zmall.t_product (id, category_id, name, `desc`, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043450703827173376, 1043448256798916609, '黄瓜', '生熟都可', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_product (id, category_id, name, `desc`, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043450703827173377, 1043448256798916609, '芹菜', '健康绿色', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_product (id, category_id, name, `desc`, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043450703827173378, 1043448256798916609, '茭瓜', '新鲜', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_product (id, category_id, name, `desc`, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043450703827173379, 1043448256798916611, '酸奶', '便宜实惠', 0, 0, 0, 0, 1);
+INSERT INTO zmall.t_product (id, category_id, name, `desc`, createdBy, createdDate, modifiedBy, modifiedDate, status) VALUES (1043450703827173380, 1043448256798916611, '绿茶', '贵有贵的道理', 0, 0, 0, 0, 1);
